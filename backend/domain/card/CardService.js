@@ -1,8 +1,6 @@
-const CardRepository = require("./CardRepository");
-
 class CardService {
-  constructor() {
-    this.cardRepository = new CardRepository();
+  constructor(cardRepository) {
+    this.cardRepository = cardRepository;
   }
 
   async createCard(cardData) {
@@ -13,13 +11,12 @@ class CardService {
     return this.cardRepository.findById(cardId);
   }
 
-  async getAllCards() {
-    return this.cardRepository.getAllCards();
+  async getAllCards(tags) {
+    console.log(tags);
+    return await this.cardRepository.getAllCards(tags);
   }
 
-  async getCardsQuizz() {
-    
-  }
+  async getCardsQuizz() {}
 }
 
 module.exports = CardService;
