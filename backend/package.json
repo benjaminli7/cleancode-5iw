@@ -2,8 +2,10 @@
   "scripts": {
     "test": "jest"
   },
-  
   "devDependencies": {
     "jest": "^29.7.0"
+  },
+  "dependencies": {
+    "uuid": "^9.0.1"
   }
 }
