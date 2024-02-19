@@ -1,11 +1,10 @@
 const express = require("express");
+const bodyParser = require("body-parser");
+const cardRoutes = require("./interfaces/express/CardController");
+
 const app = express();
-const cardController = require("./interfaces/express/CardController");
 
-app.use("/cards", cardController);
+app.use(bodyParser.json());
+app.use("/cards", cardRoutes);
 
-
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+module.exports = app;
