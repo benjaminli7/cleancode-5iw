@@ -1,7 +1,7 @@
 // domain/category.js
 class Category {
-  constructor(name) {
-    this.name = name;
+  constructor(names) {
+    this.categories = [names];
   }
 }
 
