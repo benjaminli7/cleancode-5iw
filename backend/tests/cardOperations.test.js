@@ -15,7 +15,6 @@ describe("POST /cards", () => {
     expect(response.body).toEqual(expect.objectContaining(newCard));
   });
 });
-
 describe("GET /cards/quizz", () => {
   it("should fetch all cards for today's quiz", async () => {
     const response = await request(app).get("/cards/quizz");

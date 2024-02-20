@@ -18,6 +18,9 @@ class Card {
     this.answer = answer;
     this.tag = tag;
     this.setCategory(category);
+    //local date
+    this.createdAt = new Date();
+    this.updatedAt = new Date();
   }
 
   setCategory(category) {

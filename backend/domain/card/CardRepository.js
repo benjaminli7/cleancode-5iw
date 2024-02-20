@@ -45,6 +45,50 @@ class CardRepository {
       res.status(500).send("An error occurred while creating the card.");
     }
   }
+
+  async getCardsQuizz() {
+    const now = new Date();
+    const yesterday = new Date(now);
+    yesterday.setDate(now.getDate() - 1);
+    const cardsNotDone = this.cards.filter(
+      (card) => card.category !== this.categories.DONE
+    );
+    console.log(cardsNotDone);
+
+    const cardsNotDoneNewOrYesterday = cardsNotDone.filter(
+      (card) =>
+        card.createdAt.getDate() === now.getDate() ||
+        card.updatedAt?.getDate() > yesterday.getDate()
+    );
+    return cardsNotDoneNewOrYesterday;
+  }
+
+  async answerCard(cardId, answer) {
+    const card = await this.findById(cardId);
+    if (!card) {
+      throw new Error(`Card not found with id: ${cardId}`);
+    }
+    if (answer.isValid) {
+      const indexOfCurrentCategory = Object.values(this.categories).indexOf(
+        card.category
+      );
+      const nextCategory = Object.values(this.categories)[
+        indexOfCurrentCategory + 1
+      ];
+
+      if (!nextCategory) {
+        card.setCategory(this.categories.DONE);
+        return card;
+      }
+
+      card.updatedAt = new Date();
+      card.setCategory(nextCategory);
+      return card;
+    } else {
+      card.setCategory(this.categories.FIRST);
+    }
+    return card;
+  }
 }
 
 module.exports = CardRepository;

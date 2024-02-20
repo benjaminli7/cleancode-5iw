@@ -10,7 +10,6 @@ const cardService = new CardService(cardRepository);
 router.get("/", async (req, res) => {
   const { tags } = req.query;
   try {
-    console.log(tags);
     const filteredCards = await cardService.getAllCards(
       tags ? tags.split(",") : null
     );
@@ -22,18 +21,35 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  console.log(req.body);
-  const newCard = await cardService.createCard(req.body);
-
-  res.status(201).json(newCard);
+  try {
+    const newCard = await cardService.createCard(req.body);
+    res.status(201).json(newCard);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("An error occurred while creating the card.");
+  }
 });
 
 router.get("/quizz", async (req, res) => {
-  res.json([]);
+  try {
+    const cardsQuizz = await cardService.getCardsQuizz();
+    res.json(cardsQuizz);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("An error occurred while fetching the quizz cards.");
+  }
 });
 
 router.patch("/:cardId/answer", async (req, res) => {
-  res.status(204).end();
+  try {
+    const { cardId } = req.params;
+    const answer = req.body;
+    const updatedCard = await cardService.answerCard(cardId, answer);
+    res.status(204).json(updatedCard);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("An error occurred while answering the card.");
+  }
 });
 
 module.exports = router;
