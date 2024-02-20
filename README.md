@@ -18,6 +18,8 @@ npm i
 npm run start
 ```
 
+If CORS-error, install this extension https://chromewebstore.google.com/detail/cors-unblock/lfhmikememgdcahcdlaciloancbhjino?pli=1
+
 ### Frontend Setup
 
 To set up and run the frontend, follow these steps:

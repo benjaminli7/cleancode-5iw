@@ -1,13 +1,14 @@
-import React from 'react';
-
+import React from "react";
+import Quizz from "./components/Quizz";
+import { Toaster } from "sonner";
 
 function App() {
-
   return (
     <>
-     Hello world
+      <Toaster position="top-center" />
+      <Quizz />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
