@@ -12,15 +12,14 @@ const Categories = {
 };
 
 class Card {
-  constructor(id, question, answer, category, tag) {
+  constructor(id, question, answer, category, tag, createdAt, updatedAt) {
     this.id = id;
     this.question = question;
     this.answer = answer;
     this.tag = tag;
     this.setCategory(category);
-    //local date
-    this.createdAt = new Date();
-    this.updatedAt = new Date();
+    this.createdAt = createdAt || new Date();
+    this.updatedAt = updatedAt || new Date();
   }
 
   setCategory(category) {
@@ -28,6 +27,9 @@ class Card {
       throw new Error(`Invalid category: ${category}`);
     }
     this.category = category;
+  }
+  setUpdatedAt(newDate) {
+    this.updatedAt = newDate;
   }
 }
 

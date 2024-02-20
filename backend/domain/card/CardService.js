@@ -19,8 +19,8 @@ class CardService {
     return filteredCards;
   }
 
-  async getCardsQuizz() {
-    return await this.cardRepository.getCardsQuizz();
+  async getCardsQuizz(date) {
+    return await this.cardRepository.getCardsQuizz(date);
   }
 
   async answerCard(cardId, answer) {

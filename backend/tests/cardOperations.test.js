@@ -1,13 +1,12 @@
 const request = require("supertest");
 const app = require("../index.js");
+
 describe("POST /cards", () => {
   it("should create a new card", async () => {
     const newCard = {
-      id: 1,
       question: "What is pair programming?",
       answer: "A practice to work in pair on the same computer.",
       tag: "Teamwork",
-      category: "FIRST",
     };
     const response = await request(app).post("/cards").send(newCard);
     console.log(response.body);
@@ -24,7 +23,7 @@ describe("GET /cards/quizz", () => {
 });
 describe("PATCH /cards/{cardId}/answer", () => {
   it("should accept an answer for a card", async () => {
-    const cardId = 1;
+    const cardId = 15;
     const response = await request(app)
       .patch(`/cards/${cardId}/answer`)
       .send({ isValid: true });

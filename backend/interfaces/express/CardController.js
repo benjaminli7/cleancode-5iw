@@ -32,7 +32,8 @@ router.post("/", async (req, res) => {
 
 router.get("/quizz", async (req, res) => {
   try {
-    const cardsQuizz = await cardService.getCardsQuizz();
+    const { date } = req.query;
+    const cardsQuizz = await cardService.getCardsQuizz(date);
     res.json(cardsQuizz);
   } catch (error) {
     console.error(error);
