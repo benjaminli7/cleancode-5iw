@@ -1,11 +1,11 @@
 import React from 'react';
-import Quizz from './components/Quizz';
+
 
 function App() {
 
   return (
     <>
-      <Quizz />
+     Hello world
     </>
   )
 }
